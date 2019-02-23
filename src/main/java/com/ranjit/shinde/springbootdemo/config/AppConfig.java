@@ -1,6 +1,7 @@
 package com.ranjit.shinde.springbootdemo.config;
 
 import com.ranjit.shinde.springbootdemo.model.Movie;
+import com.ranjit.shinde.springbootdemo.model.MyBean;
 import com.ranjit.shinde.springbootdemo.service.MovieService;
 import org.springframework.context.annotation.*;
 
@@ -20,5 +21,11 @@ public class AppConfig {
     @Bean
     public NumberFormat cf(){
         return NumberFormat.getCurrencyInstance();
+    }
+
+    @Bean
+    @Scope(value="singleton")
+    public MyBean myBean() {
+        return new MyBean();
     }
 }
