@@ -21,4 +21,13 @@
         </property>
     </bean>
 
+    <bean id="cf" class="java.text.NumberFormat" factory-method="getCurrencyInstance">
+    </bean>
+
+    <bean id="factory" class="javax.xml.parsers.DocumentBuilderFactory" factory-method="newInstance"></bean>
+
+    <bean id="docBuilder" class="javax.xml.parsers.DocumentBuilder" factory-bean="factory" factory-method="newDocumentBuilder">
+
+    </bean>
+
 </beans>

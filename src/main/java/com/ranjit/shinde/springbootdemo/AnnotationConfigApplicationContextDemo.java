@@ -9,6 +9,8 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import org.springframework.context.annotation.Import;
 
+import java.text.NumberFormat;
+
 public class AnnotationConfigApplicationContextDemo {
 
     public static void main(String[] args) {
@@ -21,6 +23,9 @@ public class AnnotationConfigApplicationContextDemo {
 
         Movie movie2 = context.getBean("ddlj", Movie.class);
         System.out.println(movie2);
+
+        NumberFormat cf = context.getBean("cf", NumberFormat.class);
+        System.out.println(cf.format(123));
 
         for(String beanName:context.getBeanDefinitionNames()){
             System.out.println(beanName);
