@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.time.LocalDate" value="com.ranjit.shinde.springbootdemo.editor.CustomLocalDateTimeEditor" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="ddlj" class="com.ranjit.shinde.springbootdemo.model.Movie">
+        <property name="name" value="DDLJ"></property>
+        <property name="releaseDate">
+            <value>2019-01-01</value>
+        </property>
+        <property name="length">
+            <value>178</value>
+        </property>
+    </bean>
+
+</beans>
