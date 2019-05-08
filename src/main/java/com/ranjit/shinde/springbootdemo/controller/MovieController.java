@@ -10,33 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/movies")
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
 
     @ResponseBody
-    @GetMapping("/movies")
-    public List<Movie> list(){
+    @GetMapping("/")
+    public List<Movie> all(){
         return  movieService.list();
     }
 
     @ResponseBody
-    @GetMapping("/moviepage")
-    public List<Movie> getPagedList(@RequestHeader("pageNo") int pageNo){
-        return  movieService.getPage(pageNo);
+    @GetMapping("/{id}")
+    public Movie byId(@PathVariable("id") String id){
+        return  movieService.get(id);
     }
 
     @ResponseBody
-    @PostMapping("/movie")
-    public String saveMovie(@RequestBody Movie movie) {
+    @PostMapping("/")
+    public String create(@RequestBody Movie movie) {
         movieService.saveOrUpdate(movie);
         return movie.getName();
     }
 
     @ResponseBody
-    @DeleteMapping("/movie/{id}")
-    public String deleteMovie(@PathVariable("id") String name) {
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") String name) {
         movieService.delete(name);
         return name;
     }

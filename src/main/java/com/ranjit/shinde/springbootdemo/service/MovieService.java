@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -20,7 +21,6 @@ public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
-
 
     public List<Movie> list() {
         return movieRepository.findAll();
@@ -34,8 +34,8 @@ public class MovieService {
         movieRepository.deleteById(name);
     }
 
-    public List<Movie> getPage(int pageNo) {
-        Page<Movie> all = movieRepository.findAll(PageRequest.of(pageNo, 1));
-        return all.map(page -> page).stream().collect(toList());
+    public Movie get(String id){
+        return movieRepository.findById(id).orElse(null);
     }
+
 }
