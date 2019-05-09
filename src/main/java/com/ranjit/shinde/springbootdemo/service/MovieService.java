@@ -1,5 +1,6 @@
 package com.ranjit.shinde.springbootdemo.service;
 
+import com.ranjit.shinde.springbootdemo.exception.MovieNotFoundException;
 import com.ranjit.shinde.springbootdemo.model.Movie;
 import com.ranjit.shinde.springbootdemo.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class MovieService {
     }
 
     public Movie get(String id){
-        return movieRepository.findById(id).orElse(null);
+        return movieRepository.findById(id).orElseThrow(()->new MovieNotFoundException(id));
     }
 
 }
