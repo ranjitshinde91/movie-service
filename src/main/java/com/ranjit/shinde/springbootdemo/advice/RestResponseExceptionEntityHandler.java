@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.jws.WebResult;
 
 @ControllerAdvice
-public class RestResponseExceptionEntitiHandler extends ResponseEntityExceptionHandler {
+public class RestResponseExceptionEntityHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(MovieNotFoundException.class)
