@@ -11,7 +11,7 @@ import java.util.List;
 @Repository()
 public interface MovieRepository extends JpaRepository<Movie, String> {
 
-    List<Movie> findByName(String name);
+    Movie findByName(String name);
 }
 
 

@@ -38,5 +38,9 @@ public class MovieService {
     public Movie get(String id){
         return movieRepository.findById(id).orElseThrow(()->new MovieNotFoundException(id));
     }
+    public Movie getByName(String name){
+        return movieRepository.findByName(name);
+    }
+
 
 }

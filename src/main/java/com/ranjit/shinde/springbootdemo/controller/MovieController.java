@@ -27,13 +27,11 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @ResponseBody
     @GetMapping("/")
     public List<Movie> all(){
         return  movieService.list();
     }
 
-    @ResponseBody
     @GetMapping("/{id}")
     public Movie byId(@PathVariable("id") @NotBlank @Size(min = 2) String id ){
        try {
@@ -45,18 +43,23 @@ public class MovieController {
         }
     }
 
-    @ResponseBody
+    @GetMapping("/search")
+    public Movie search(@RequestParam (value = "name" , required=true) String name){
+        return movieService.getByName(name);
+    }
+
     @PostMapping("/")
     public String create(@RequestBody Movie movie) {
         movieService.saveOrUpdate(movie);
         return movie.getName();
     }
 
-    @ResponseBody
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") String name) {
         movieService.delete(name);
         return name;
     }
+
+
 
 }

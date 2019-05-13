@@ -31,12 +31,11 @@ public class MovieRepositoryTest {
         testEntityManager.persist(movie);
         testEntityManager.flush();
 
-        List<Movie> result = movieRepository.findByName("COCO");
+        Movie result = movieRepository.findByName("COCO");
 
-        assertThat(result).hasSize(1);
-        assertThat((result).get(0).getName()).isEqualTo("COCO");
-        assertThat((result).get(0).getLength()).isEqualTo(120);
-        assertThat((result).get(0).getReleaseDate()).isEqualTo(LocalDate.now());
+        assertThat(result.getName()).isEqualTo("COCO");
+        assertThat(result.getLength()).isEqualTo(120);
+        assertThat(result.getReleaseDate()).isEqualTo(LocalDate.now());
     }
 
 
