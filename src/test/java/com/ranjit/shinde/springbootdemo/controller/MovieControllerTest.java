@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import javax.annotation.security.RunAs;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -42,10 +43,10 @@ class MovieControllerTest {
 
     @Test
     @DisplayName(" Should Return List of Movies")
-    void fetchAllMoviesShouldRetuenListOfMovies() throws Exception {
+    void shouldReturnListOfMovies() throws Exception {
 
         Movie movie = new Movie("DDLJ", LocalDate.now(), 123);
-        when(movieService.list()).thenReturn(List.of(movie));
+        when(movieService.list()).thenReturn(Arrays.asList(movie));
 
         String expectedResult= "[{\"name\":\"DDLJ\",\"releaseDate\":\"2019-05-13\",\"length\":123}]";
 
