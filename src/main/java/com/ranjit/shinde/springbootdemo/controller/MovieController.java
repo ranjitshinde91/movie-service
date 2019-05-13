@@ -6,15 +6,12 @@ import com.ranjit.shinde.springbootdemo.model.Movie;
 import com.ranjit.shinde.springbootdemo.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -24,8 +21,11 @@ import java.util.List;
 @Slf4j
 public class MovieController {
 
-    @Autowired
     private MovieService movieService;
+
+    public MovieController(MovieService movieService){
+        this.movieService = movieService;
+    }
 
     @GetMapping("/")
     public List<Movie> all(){

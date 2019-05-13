@@ -20,8 +20,11 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class MovieService {
 
-    @Autowired
     private MovieRepository movieRepository;
+
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public List<Movie> list() {
         return movieRepository.findAll();
