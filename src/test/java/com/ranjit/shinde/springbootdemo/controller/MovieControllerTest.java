@@ -2,7 +2,6 @@ package com.ranjit.shinde.springbootdemo.controller;
 
 import com.ranjit.shinde.springbootdemo.model.Movie;
 import com.ranjit.shinde.springbootdemo.service.MovieService;
-import com.sun.tools.javac.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,10 +44,10 @@ class MovieControllerTest {
     @DisplayName(" Should Return List of Movies")
     void shouldReturnListOfMovies() throws Exception {
 
-        Movie movie = new Movie("DDLJ", LocalDate.now(), 123);
+        Movie movie = new Movie("DDLJ", LocalDate.of(2019, 05, 14), 123);
         when(movieService.list()).thenReturn(Arrays.asList(movie));
 
-        String expectedResult= "[{\"name\":\"DDLJ\",\"releaseDate\":\"2019-05-13\",\"length\":123}]";
+        String expectedResult= "[{\"name\":\"DDLJ\",\"releaseDate\":\"2019-05-14\",\"length\":123}]";
 
         mockMvc.perform(get("/movies/")
                 .contentType(MediaType.APPLICATION_JSON))
