@@ -32,6 +32,11 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+    testRuntime("org.junit.vintage:junit-vintage-engine:5.2.0")
+
+    // https://mvnrepository.com/artifact/au.com.dius/pact-jvm-provider-spring
+    compile group: 'au.com.dius', name: 'pact-jvm-provider-spring_2.12', version: '3.6.7'
+
 
 
 }
