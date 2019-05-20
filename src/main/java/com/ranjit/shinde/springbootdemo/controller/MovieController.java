@@ -34,13 +34,8 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public Movie byId(@PathVariable("id") @NotBlank @Size(min = 2) String id ){
-       try {
         return  movieService.get(id);
-       }
-        catch (MovieNotFoundException exc) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Foo Not Found");
-        }
+
     }
 
     @GetMapping("/search")

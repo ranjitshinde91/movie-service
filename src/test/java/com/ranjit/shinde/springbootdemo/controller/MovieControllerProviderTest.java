@@ -9,12 +9,15 @@ import au.com.dius.pact.provider.junit.loader.PactFolder;
 import au.com.dius.pact.provider.junit.loader.PactUrl;
 import au.com.dius.pact.provider.junit.target.TestTarget;
 import au.com.dius.pact.provider.spring.target.MockMvcTarget;
+import com.ranjit.shinde.springbootdemo.advice.RestResponseExceptionEntityHandler;
+import com.ranjit.shinde.springbootdemo.exception.MovieNotFoundException;
 import com.ranjit.shinde.springbootdemo.model.Movie;
 import com.ranjit.shinde.springbootdemo.service.MovieService;
 import org.junit.Before;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -42,13 +45,19 @@ public class MovieControllerProviderTest {
         initMocks(this);
         movieController = new MovieController(movieService);
         target.setControllers(movieController);
+        target.setControllerAdvice(new RestResponseExceptionEntityHandler());
     }
 
     @State("getMovie") // same as the "given()" part in our consumer test
-    public void personData() {
+    public void movieData() {
         Movie movie = new Movie("LOTR",
                 LocalDate.of(2006, 05, 26), 123);
         when(movieService.get(anyString())).thenReturn(movie);
+    }
+
+    @State("getMissingMovie")
+    public void movieDataNotFound(){
+        when(movieService.get(anyString())).thenThrow(new MovieNotFoundException("DDLJ2"));
     }
 
 }
