@@ -41,7 +41,7 @@ class MovieControllerTest {
     private MovieService movieService;
 
     @Test
-    @DisplayName(" Should Return List of Movies")
+    @DisplayName("Should Return List of Movies")
     void shouldReturnListOfMovies() throws Exception {
 
         Movie movie = new Movie("DDLJ", LocalDate.of(2019, 05, 14), 123);
