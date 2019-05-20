@@ -1,0 +1,124 @@
+{
+  "provider": {
+    "name": "movie-service"
+  },
+  "consumer": {
+    "name": "movie-consumer"
+  },
+  "interactions": [
+    {
+      "description": "non existing movie",
+      "request": {
+        "method": "GET",
+        "path": "/movies/DDLJ2"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "message": "string"
+        },
+        "matchingRules": {
+          "body": {
+            "$.message": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.message": {
+              "type": "RandomString",
+              "size": 20
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "getMissingMovie"
+        }
+      ]
+    },
+    {
+      "description": "GET Movie Details",
+      "request": {
+        "method": "GET",
+        "path": "/movies/DDLJ"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "releaseDate": "2000-01-31",
+          "name": "DDLJ",
+          "length": 100
+        },
+        "matchingRules": {
+          "body": {
+            "$.name": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.length": {
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.releaseDate": {
+              "matchers": [
+                {
+                  "match": "date",
+                  "date": "yyyy-MM-dd"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.length": {
+              "type": "RandomInt",
+              "min": 0,
+              "max": 2147483647
+            },
+            "$.releaseDate": {
+              "type": "Date",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "getMovie"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "3.6.7"
+    }
+  }
+}
